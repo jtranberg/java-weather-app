@@ -12,6 +12,17 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * The WeatherAppGUI class provides a graphical user interface (GUI) for displaying 
+ * weather information based on a user's input location. It fetches data from a weather 
+ * API, displays the current weather and forecast, and allows the user to view their 
+ * search history.
+ * This app has a dynamic backgroung which changes whith the time of day.
+ * Showing weather data and a weather Icon. 
+ * 
+ * @author Jay Tranberg
+ * @since 2024-08-13
+ */
 public class WeatherAppGUI {
     private JFrame frame;
     private JTextField locationField;
@@ -24,6 +35,9 @@ public class WeatherAppGUI {
     private JButton viewHistoryButton;
     private List<String> searchHistory;
 
+    /**
+     * Constructs the WeatherAppGUI and initializes the GUI components.
+     */
     public WeatherAppGUI() {
         frame = new JFrame("My Weather App");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,7 +61,7 @@ public class WeatherAppGUI {
         JButton showForecastButton = new JButton("Show Forecast");
         viewHistoryButton = new JButton("View History");
 
-        unitComboBox = new JComboBox<>(new String[] {"Celsius", "Fahrenheit"});
+        unitComboBox = new JComboBox<>(new String[]{"Celsius", "Fahrenheit"});
         unitComboBox.setSelectedItem("Celsius");
         unitComboBox.setPreferredSize(new Dimension(80, unitComboBox.getPreferredSize().height));
         unitComboBox.setBorder(new EtchedBorder(15));
@@ -116,6 +130,10 @@ public class WeatherAppGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Fetches weather data from the WeatherAPI and updates the GUI to display the weather information.
+     * If the location is invalid or the data fetch fails, an error message is shown.
+     */
     @SuppressWarnings("deprecation")
     private void fetchAndDisplayWeather() {
         String location = locationField.getText().trim();
@@ -174,6 +192,10 @@ public class WeatherAppGUI {
         }
     }
 
+    /**
+     * Fetches and displays the weather forecast for the entered location.
+     * If the location is invalid, an error message is shown.
+     */
     private void showForecast() {
         String location = locationField.getText().trim();
         if (location.isEmpty()) {
@@ -197,6 +219,9 @@ public class WeatherAppGUI {
         }
     }
 
+    /**
+     * Displays the main panel with the input fields and weather information.
+     */
     private void showMainPanel() {
         frame.getContentPane().remove(forecastScrollPane);
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
@@ -204,6 +229,10 @@ public class WeatherAppGUI {
         frame.repaint();
     }
 
+    /**
+     * Displays the search history in a dialog. Allows the user to select a previous location 
+     * to fetch its weather information.
+     */
     private void showSearchHistory() {
         if (searchHistory.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "No search history available.", "History", JOptionPane.INFORMATION_MESSAGE);
@@ -227,17 +256,27 @@ public class WeatherAppGUI {
         }
     }
 
+    /**
+     * Displays an error message in a dialog.
+     * 
+     * @param message the error message to display
+     */
     private void showError(String message) {
         JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Sets a dynamic background image for the given panel based on the current time of day.
+     * 
+     * @param panel the panel to set the background image on
+     */
     @SuppressWarnings("unused")
-	private void setDynamicBackground(JPanel panel) {
+    private void setDynamicBackground(JPanel panel) {
         panel.setOpaque(false); // Ensure panel is transparent
 
         try {
             String imagePath = null;
-			BufferedImage bgImage = ImageIO.read(new File(imagePath));
+            BufferedImage bgImage = ImageIO.read(new File(imagePath));
             panel.setLayout(new BorderLayout());
 
             // Create a custom JPanel to handle painting the background image
@@ -266,30 +305,37 @@ public class WeatherAppGUI {
         }
     }
 
-
+    /**
+     * The main method to launch the WeatherAppGUI application.
+     * 
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(WeatherAppGUI::new);
     }
 
+    /**
+     * The BackgroundPanel class provides a custom JPanel with a dynamic background image 
+     * that changes based on the current time of day (morning, afternoon, evening).
+     */
     private class BackgroundPanel extends JPanel {
-        /**
-		 * 
-		 */
-		private static final long serialVersionUID = 459471842384024179L;
+        private static final long serialVersionUID = 459471842384024179L;
 
-		@Override
+        @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Calendar now = Calendar.getInstance();
             int hour = now.get(Calendar.HOUR_OF_DAY);
             String imagePath = "";
 
-            if (hour >= 6 && hour < 12) {
+            if (hour >= 4 && hour < 8) {
                 imagePath = "src/images/morning.jpg";
-            } else if (hour >= 12 && hour < 18) {
+            } else if (hour >= 8 && hour < 12) {
                 imagePath = "src/images/afternoon.jpg";
-            } else {
+            } else if (hour >= 12 && hour < 18) {
                 imagePath = "src/images/evening.jpg";
+            }else {
+                imagePath = "src/images/latenight.jpg";
             }
 
             try {

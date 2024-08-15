@@ -7,12 +7,27 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+//weather App Api. endpoints,icon,forcast, currentweather
+/**
+ * weather App api. this is the api to connect to openweather api
+ * endpoints include: current weather, forecast, and icon url's
+ */
+
 public class WeatherAPI {
     private static final String API_KEY = "f7016d740da7c098b97c1e4f547188b7"; // Replace with your actual API key
     private static final String WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=%s&appid=%s";
     private static final String FORECAST_API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=%s&units=%s&appid=%s";
     private static final String ICON_URL = "http://openweathermap.org/img/wn/%s@2x.png";
-
+    // constructor location and units.
+    //get the weather data.
+    /**
+     * be sure to close your connection and catch those errors.
+     * @param location get location
+     * @param units time units 
+     * @return
+     */
+    
+    //get mathod
     @SuppressWarnings("deprecation")
 	public static WeatherData getWeatherData(String location, String units) {
         try {
@@ -41,7 +56,12 @@ public class WeatherAPI {
             return new WeatherData("Exception: " + e.getMessage());
         }
     }
-
+/**
+ * get the forecast data
+ * @param location
+ * @param units
+ * @return
+ */
     @SuppressWarnings("deprecation")
 	public static String getForecastData(String location, String units) {
         try {
@@ -68,7 +88,11 @@ public class WeatherAPI {
             return "Exception: " + e.getMessage();
         }
     }
-
+/**
+ * pasre the forecast json data
+ * @param jsonData data parsing forecast data
+ * @return
+ */
     private static String parseForecastData(String jsonData) {
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONArray list = jsonObject.getJSONArray("list");
@@ -84,7 +108,11 @@ public class WeatherAPI {
         }
         return forecastBuilder.toString();
     }
-
+/**
+ * parsing current weather data
+ * @param jsonData
+ * @return
+ */
     private static WeatherData parseWeatherData(String jsonData) {
         JSONObject jsonObject = new JSONObject(jsonData);
 

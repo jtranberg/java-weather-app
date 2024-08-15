@@ -2,7 +2,7 @@
  * 
  */
 /**
- * 
+ * required info
  */
 module weatherApp {
 	requires java.desktop;

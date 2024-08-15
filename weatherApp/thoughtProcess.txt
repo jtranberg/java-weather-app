@@ -1,0 +1,42 @@
+Thought process.
+Create an app that retreives and displays the weather details using openweather API.
+Structure:
+we need a weatherAPI  class separate file
+we need a weatherAppGUI class buit in its own file
+we need a weatherData class for api Results separate file
+
+Java docs
+code comments
+git hub repo
+
+dynamic background:
+break up in to 4 parts of the day and show different pictures
+the relate to timeof day when using app
+
+API will have private final endpoints
+get weather data
+parse data
+
+UI/front end:
+get weather data and icon.
+forecast weather
+back button
+get weather input and button
+view history button
+celcius toggle
+
+Build GUI for viewing weather and inputing details.
+set the size of panel
+insert panels and grid layout
+add buttons, toggle  and input box
+
+build functions and classes to :
+fetch weather
+display weather
+forcast weather
+show search history
+show main panel
+set dynamic background
+background panele extends jpanel which will paint component.
+we need getters and setters
+ main
