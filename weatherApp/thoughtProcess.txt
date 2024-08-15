@@ -8,6 +8,7 @@ we need a weatherData class for api Results separate file
 Java docs
 code comments
 git hub repo
+https://github.com/jtranberg/java-weather-app.git
 
 dynamic background:
 break up in to 4 parts of the day and show different pictures

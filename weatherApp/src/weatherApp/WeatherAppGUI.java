@@ -19,7 +19,7 @@ import javax.swing.border.EtchedBorder;
  * search history.
  * This app has a dynamic backgroung which changes whith the time of day.
  * Showing weather data and a weather Icon. 
- * 
+ * https://github.com/jtranberg/java-weather-app.git
  * @author Jay Tranberg
  * @since 2024-08-13
  */

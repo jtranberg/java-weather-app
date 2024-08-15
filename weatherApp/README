@@ -1,0 +1,19 @@
+This is a Java weather app.
+
+incorporating java .awt
+bufferReader
+API to openweather using current weather , forecast and icon image URL endpoints.
+
+enter your      city, country(format) and see your weather.
+
+install the required .jar files and compile and run. 
+you can replace the dynamic images with your own.
+Watch your file names. 
+
+This app with retrieve weather from specified locations.
+It will show you the forcast for that area.
+Details and a weather icon will be shown.
+There is a dynamic background that will change depending on time of day the app is used.
+you can search your previos searches.
+you can toggle between C* amd F* tempurature units.
+
